@@ -1,16 +1,14 @@
-var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: true }); 
+const Nightmare = require('nightmare');
+const nightmare = Nightmare({ show: true }); 
 
 nightmare
-  .goto('https://turing.io/team/')
-  .click('a[href="/team/instructors"]')
-  .wait('h3')
+  .goto('https://webscraper.io/test-sites')
+  .click('a[href="/test-sites/e-commerce/static"]')
+  .wait('h4')
   .evaluate(function () {
-    var nameNodes = document.querySelectorAll('h3');
-    var list = [].slice.call(nameNodes);
-    return list.map(function(node){
-      return node.innerText
-    });
+    const priceNodes = document.querySelectorAll('.price');
+    const list = [].slice.call(priceNodes);
+    return list.map(node => node.innerText)
   })
   .end()
   .then(function (result) {
@@ -19,3 +17,5 @@ nightmare
   .catch(function (error) {
     console.error('Search failed:', error);
   });
+
+
